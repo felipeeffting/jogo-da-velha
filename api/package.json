@@ -1,0 +1,13 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "auth": "cd auth && sls offline",
+    "all": "npm run auth"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

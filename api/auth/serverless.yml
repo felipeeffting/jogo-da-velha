@@ -1,0 +1,36 @@
+service: auth
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  hello:
+    handler: handler.hello
+    memory: 128
+    events:
+      - http:
+          path: /hello
+          method: get
+  createUser:
+    handler: ./v1/createUser.run
+    memory: 128
+    events:
+      - http:
+          path: /v1/auth/user
+          method: POST
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+    stages:
+      - dev
+
+resources:
+  - ${file(./db.yml)}
